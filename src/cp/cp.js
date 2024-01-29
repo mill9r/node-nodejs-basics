@@ -2,9 +2,7 @@ import {spawn} from 'child_process'
 const spawnChildProcess = async (args) => {
     const child = spawn('node', [...args]);
     process.stdin.pipe(child.stdin);
-    child.stdout.on('data', (data) => {
-        console.log(`${data}`);
-    });
+    child.stdout.pipe(process.stdout);
 };
 
 // Put your arguments in function call to test this functionality
